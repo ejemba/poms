@@ -1,4 +1,4 @@
-seed-poms
-=========
+poms
+====
 
 Common POMS for SEED stack
