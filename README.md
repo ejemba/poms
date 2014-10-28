@@ -1,4 +1,3 @@
-poms
-====
+# SEED poms ![Build status](https://travis-ci.org/seed-stack/poms.svg?branch=master)
 
-Common POMS for SEED stack
+Common poms for SEED stack
