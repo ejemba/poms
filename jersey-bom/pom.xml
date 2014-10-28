@@ -1,0 +1,128 @@
+<!--
+  ~ Copyright (c) 2013-2014 by PSA Peugeot Citroën. All rights reserved
+  ~
+  ~ This file is part of SEED stack.
+  ~
+  ~ SEED stack is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Lesser General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ SEED stack is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Lesser General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public License
+  ~ along with SEED stack.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+		<groupId>com.mpsa.seed</groupId>
+		<artifactId>seed-poms</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>seed-jersey-bom</artifactId>
+    <name>seed-jersey-bom</name>
+    <packaging>pom</packaging>
+
+    <properties>
+        <jersey.version>1.17.1</jersey.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-core</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-client</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey.contribs</groupId>
+                <artifactId>jersey-multipart</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-grizzly2</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-grizzly</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-grizzly2-servlet</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-json</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey.contribs</groupId>
+                <artifactId>jersey-guice</artifactId>
+                <version>${jersey.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.inject.extensions</groupId>
+                        <artifactId>guice-servlet</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>guice</artifactId>
+                        <groupId>com.google.inject</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey.contribs</groupId>
+                <artifactId>jersey-spring</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-server</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-servlet</artifactId>
+                <version>${jersey.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey.jersey-test-framework</groupId>
+                <artifactId>jersey-test-framework-core</artifactId>
+                <version>${jersey.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey.jersey-test-framework</groupId>
+                <artifactId>jersey-test-framework-external</artifactId>
+                <version>${jersey.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey.jersey-test-framework</groupId>
+                <artifactId>jersey-test-framework-grizzly</artifactId>
+                <version>${jersey.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.jersey.jersey-test-framework</groupId>
+                <artifactId>jersey-test-framework-grizzly2</artifactId>
+                <version>${jersey.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
