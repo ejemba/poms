@@ -1,45 +1,112 @@
-﻿<!--
-  ~ Copyright (c) 2013-2014 by PSA Peugeot Citroën. All rights reserved
-  ~
-  ~ This file is part of SEED stack.
-  ~
-  ~ SEED stack is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU Lesser General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ SEED stack is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU Lesser General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU Lesser General Public License
-  ~ along with SEED stack.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--
+
+    Copyright (c) 2013-2014 by PSA Peugeot Citroën. All rights reserved
+
+    This file is part of SEED stack.
+
+    SEED stack is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    SEED stack is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with SEED stack.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mpsa.seed</groupId>
     <artifactId>seed-poms</artifactId>
     <version>2.0.0-SNAPSHOT</version>
-    <name>seed-poms</name>
     <packaging>pom</packaging>
 
-    <inceptionYear>2013</inceptionYear>
+    <modules>
+        <module>license-templates</module>
+        <module>assembly-descriptors</module>
+        <module>commons-bom</module>
+        <module>guiceext-bom</module>
+        <module>hibernate-bom</module>
+        <module>jackson-bom</module>
+        <module>java-bom</module>
+        <module>jersey-bom</module>
+        <module>spring-bom</module>
+        <module>logging-bom</module>
+        <module>nuun-bom</module>
+        <module>unittest-bom</module>
+        <module>integrationtest-bom</module>
+        <module>shiro-bom</module>
+        <module>java-parent</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <license-maven-plugin.version>2.6</license-maven-plugin.version>
+        <seed-poms.version>2.0.0-SNAPSHOT</seed-poms.version>
+
+        <seed.license.name>LGPLv3</seed.license.name>
+        <seed.license.url>http://www.gnu.org/copyleft/lesser.html</seed.license.url>
+        <seed.owner>PSA Peugeot Citroën</seed.owner>
+        <seed.years>2013-2014</seed.years>
+        <seed.name>SEED stack</seed.name>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>${license-maven-plugin.version}</version>
+                <configuration>
+                    <header>com/mpsa/seed/licenses/${seed.license.name}.license</header>
+                    <strictCheck>true</strictCheck>
+                    <keywords>
+                        <keyword>copyright</keyword>
+                        <keyword>${seed.owner}</keyword>
+                    </keywords>
+                    <properties>
+                        <owner>${seed.owner}</owner>
+                        <name>${seed.name}</name>
+                        <years>${seed.years}</years>
+                    </properties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.mpsa.seed</groupId>
+                        <artifactId>seed-license-templates</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+    <inceptionYear>${seed.years}</inceptionYear>
+    <organization>
+        <name>${seed.owner}</name>
+    </organization>
 
     <licenses>
         <license>
-            <name>LGPL 3.0</name>
-            <url>http://www.gnu.org/copyleft/lesser.html</url>
+            <name>${seed.license.name}</name>
+            <url>${seed.license.url}</url>
+            <distribution>repo</distribution>
         </license>
     </licenses>
-
-    <scm>
-        <url>https://github.com/seed-stack/poms</url>
-        <connection>scm:git:git://github.com/seed-stack/poms.git</connection>
-        <developerConnection>scm:git:git@github.com:seed-stack/poms.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 
     <developers>
         <developer>
@@ -54,28 +121,10 @@
         </developer>
     </developers>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <seed-poms.version>2.0.0-SNAPSHOT</seed-poms.version>
-    </properties>
-
-    <modules>
-        <module>assembly-descriptors</module>
-
-        <module>commons-bom</module>
-        <module>guiceext-bom</module>
-        <module>hibernate-bom</module>
-        <module>jackson-bom</module>
-        <module>java-bom</module>
-        <module>jersey-bom</module>
-        <module>spring-bom</module>
-        <module>logging-bom</module>
-        <module>nuun-bom</module>
-        <module>unittest-bom</module>
-        <module>integrationtest-bom</module>
-        <module>shiro-bom</module>
-
-        <module>java-parent</module>
-        <module>javascript-parent</module>
-    </modules>
+    <scm>
+        <url>https://github.com/seed-stack/poms</url>
+        <connection>scm:git:git://github.com/seed-stack/poms.git</connection>
+        <developerConnection>scm:git:git@github.com:seed-stack/poms.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 </project>
