@@ -48,7 +48,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <maven-enforcer-plugin.version>1.3.1</maven-enforcer-plugin.version>
         <license-maven-plugin.version>2.6</license-maven-plugin.version>
+
         <seed-poms.version>2.0.0-SNAPSHOT</seed-poms.version>
 
         <seed.license.name>LGPLv3</seed.license.name>
@@ -59,38 +61,61 @@
     </properties>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.mycila</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>${license-maven-plugin.version}</version>
+                    <configuration>
+                        <header>com/mpsa/seed/licenses/${seed.license.name}.license</header>
+                        <strictCheck>true</strictCheck>
+                        <keywords>
+                            <keyword>copyright</keyword>
+                            <keyword>${seed.owner}</keyword>
+                        </keywords>
+                        <properties>
+                            <owner>${seed.owner}</owner>
+                            <name>${seed.name}</name>
+                            <years>${seed.years}</years>
+                        </properties>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.mpsa.seed</groupId>
+                            <artifactId>seed-license-templates</artifactId>
+                            <version>${project.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <version>${license-maven-plugin.version}</version>
-                <configuration>
-                    <header>com/mpsa/seed/licenses/${seed.license.name}.license</header>
-                    <strictCheck>true</strictCheck>
-                    <keywords>
-                        <keyword>copyright</keyword>
-                        <keyword>${seed.owner}</keyword>
-                    </keywords>
-                    <properties>
-                        <owner>${seed.owner}</owner>
-                        <name>${seed.name}</name>
-                        <years>${seed.years}</years>
-                    </properties>
-                </configuration>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>enforce-versions</id>
                         <goals>
-                            <goal>check</goal>
+                            <goal>enforce</goal>
                         </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.mpsa.seed</groupId>
-                        <artifactId>seed-license-templates</artifactId>
-                        <version>${project.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

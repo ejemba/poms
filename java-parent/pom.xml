@@ -34,7 +34,6 @@
         <maven-failsafe-plugin.version>2.13</maven-failsafe-plugin.version>
         <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
         <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
-        <maven-enforcer-plugin.version>1.3.1</maven-enforcer-plugin.version>
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
         <maven-assembly-plugin.version>2.4</maven-assembly-plugin.version>
         <maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
@@ -49,28 +48,92 @@
                 <directory>src/test/resources</directory>
             </testResource>
         </testResources>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-failsafe-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${build-helper-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven-dependency-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.mpsa.seed</groupId>
+                            <artifactId>seed-assembly-descriptors</artifactId>
+                            <version>${seed-poms.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <executions>
+                        <execution>
+                            <id>package-samples</id>
+                            <phase>none</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                            <inherited>true</inherited>
+                            <configuration>
+                                <descriptorRefs>
+                                    <descriptorRef>seed-samples-assembly</descriptorRef>
+                                </descriptorRefs>
+                                <appendAssemblyId>true</appendAssemblyId>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>package-doc</id>
+                            <phase>none</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                            <inherited>true</inherited>
+                            <configuration>
+                                <descriptorRefs>
+                                    <descriptorRef>seed-doc-assembly</descriptorRef>
+                                </descriptorRefs>
+                                <appendAssemblyId>true</appendAssemblyId>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>package-standalone-doc</id>
+                            <phase>none</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                            <inherited>true</inherited>
+                            <configuration>
+                                <descriptorRefs>
+                                    <descriptorRef>seed-doc-assembly</descriptorRef>
+                                </descriptorRefs>
+                                <appendAssemblyId>false</appendAssemblyId>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>${maven-enforcer-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>enforce-versions</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>3</version>
-                                </requireMavenVersion>
-                                <requireJavaVersion>
-                                    <version>1.6</version>
-                                </requireJavaVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -160,64 +223,5 @@
                 </executions>
             </plugin>
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>${maven-assembly-plugin.version}</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.mpsa.seed</groupId>
-                            <artifactId>seed-assembly-descriptors</artifactId>
-                            <version>${seed-poms.version}</version>
-                        </dependency>
-                    </dependencies>
-                    <executions>
-                        <execution>
-                            <id>package-samples</id>
-                            <phase>none</phase>
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                            <inherited>true</inherited>
-                            <configuration>
-                                <descriptorRefs>
-                                    <descriptorRef>seed-samples-assembly</descriptorRef>
-                                </descriptorRefs>
-                                <appendAssemblyId>true</appendAssemblyId>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>package-doc</id>
-                            <phase>none</phase>
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                            <inherited>true</inherited>
-                            <configuration>
-                                <descriptorRefs>
-                                    <descriptorRef>seed-doc-assembly</descriptorRef>
-                                </descriptorRefs>
-                                <appendAssemblyId>true</appendAssemblyId>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>package-standalone-doc</id>
-                            <phase>none</phase>
-                            <goals>
-                                <goal>single</goal>
-                            </goals>
-                            <inherited>true</inherited>
-                            <configuration>
-                                <descriptorRefs>
-                                    <descriptorRef>seed-doc-assembly</descriptorRef>
-                                </descriptorRefs>
-                                <appendAssemblyId>false</appendAssemblyId>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
 </project>
