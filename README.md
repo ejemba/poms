@@ -1,4 +1,4 @@
-# SEED poms [![Build status](https://travis-ci.org/seed-stack/poms.svg?branch=master)](https://travis-ci.org/seed-stack/poms)
+# SEED poms [![Build status](https://travis-ci.org/seedstack/poms.svg?branch=master)](https://travis-ci.org/seedstack/poms)
 
 Common poms for SEED stack.
 
