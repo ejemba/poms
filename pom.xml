@@ -74,7 +74,7 @@
                     <artifactId>license-maven-plugin</artifactId>
                     <version>${license-maven-plugin.version}</version>
                     <configuration>
-                        <header>com/mpsa/seed/licenses/${seed.license.name}.license</header>
+                        <header>org/seedstack/licenses/${seed.license.name}.license</header>
                         <strictCheck>true</strictCheck>
                         <keywords>
                             <keyword>copyright</keyword>
