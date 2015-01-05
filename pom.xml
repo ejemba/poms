@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2013-2014 by PSA Peugeot Citroën. All rights reserved
+    Copyright (c) 2013-2015 by PSA Peugeot Citroën. All rights reserved
 
     This file is part of SEED stack.
 
@@ -22,7 +22,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.mpsa.seed</groupId>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+    </parent>
+
+    <groupId>org.seedstack.seed</groupId>
     <artifactId>seed-poms</artifactId>
     <version>2.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -56,7 +62,7 @@
         <seed.license.name>LGPLv3</seed.license.name>
         <seed.license.url>http://www.gnu.org/copyleft/lesser.html</seed.license.url>
         <seed.owner>PSA Peugeot Citroën</seed.owner>
-        <seed.years>2013-2014</seed.years>
+        <seed.years>2013-2015</seed.years>
         <seed.name>SEED stack</seed.name>
     </properties>
 
@@ -89,7 +95,7 @@
                     </executions>
                     <dependencies>
                         <dependency>
-                            <groupId>com.mpsa.seed</groupId>
+                            <groupId>org.seedstack.seed</groupId>
                             <artifactId>seed-license-templates</artifactId>
                             <version>${project.version}</version>
                         </dependency>
@@ -112,6 +118,9 @@
                                 <requireMavenVersion>
                                     <version>3</version>
                                 </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>1.7</version>
+                                </requireJavaVersion>
                             </rules>
                         </configuration>
                     </execution>
@@ -120,7 +129,7 @@
         </plugins>
     </build>
 
-    <inceptionYear>${seed.years}</inceptionYear>
+    <inceptionYear>2013</inceptionYear>
     <organization>
         <name>${seed.owner}</name>
     </organization>
@@ -137,9 +146,8 @@
         <developer>
             <name>Adrien LAUER</name>
             <email>adrien.lauer@mpsa.com</email>
-            <organization>PSA Peugeot Citroën</organization>
+            <organization>${seed.owner}</organization>
             <roles>
-                <role>Project Owner</role>
                 <role>Architect</role>
                 <role>Developer</role>
             </roles>
@@ -147,9 +155,9 @@
     </developers>
 
     <scm>
-        <url>https://github.com/seed-stack/poms</url>
-        <connection>scm:git:git://github.com/seed-stack/poms.git</connection>
-        <developerConnection>scm:git:git@github.com:seed-stack/poms.git</developerConnection>
+        <url>https://github.com/seedstack/poms</url>
+        <connection>scm:git:git://github.com/seedstack/poms.git</connection>
+        <developerConnection>scm:git:git@github.com:seedstack/poms.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 </project>
