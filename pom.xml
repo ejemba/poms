@@ -85,6 +85,13 @@
                             <name>${seed.name}</name>
                             <years>${seed.years}</years>
                         </properties>
+                        <mapping>
+                            <props>SCRIPT_STYLE</props>
+                        </mapping>
+                        <useDefaultExcludes>true</useDefaultExcludes>
+                        <excludes>
+                            <exclude>LICENSE</exclude>
+                        </excludes>
                     </configuration>
                     <executions>
                         <execution>
